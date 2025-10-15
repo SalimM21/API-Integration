@@ -13,7 +13,7 @@ Il inclut :
 - Collections Postman prêtes à l’import pour tests manuels et automatisés.
 
 ---
-## Flux global
+## ♻️ Flux global
 ```mermaid
 flowchart TD
     A[Données Clients & Transactions] --> B[Validation JSON Schema]
@@ -36,7 +36,7 @@ flowchart TD
 ```
 ---
 
-## Structure du projet
+## 🗂️ Structure du projet
 ```bash
 api_integration/
 │
@@ -117,7 +117,7 @@ api_integration/
 
 ---
 
-## Installation
+## ⚙️ Installation
 
 1. Cloner le projet :
 ```bash
@@ -149,7 +149,7 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```bash
 http://localhost:8000/docs
 ```
-## Endpoints principaux
+## 📌 Endpoints principaux
 | Endpoint | Méthode | Description | Rôle requis |
 |---|---:|---|---|
 | `/score` | `POST` | Calcul du score crédit | `analyst`, `admin` |
@@ -180,7 +180,7 @@ http://localhost:8000/docs
 
 ---
 
-## Authentification & RBAC
+## 🔒 Authentification & RBAC
 - **Protocole** : OAuth2 / OpenID Connect (Keycloak ou Okta recommandés).
 - **JWT** : Valider la signature, `iss`, `aud` et `exp`.
 - **Rôles disponibles** : `admin`, `analyst`, `viewer`.
@@ -188,33 +188,33 @@ http://localhost:8000/docs
 
 ---
 
-## Logging & Monitoring
+## 📊 Logging & Monitoring
 - **Format des logs** : JSON structuré.
 - **Destination** : Elasticsearch (index `api-logs-*`).
 - **Exemples de métriques** : `auth_failures_count`, `forbidden_count`, `request_latency_ms`.
 
 ---
 
-## Tests
+## ✅ Tests
 - **Framework** : `pytest`.
 - **Cas à couvrir** : JWT expirés, RBAC, règles métier, injections, payloads invalides.
 
 ---
 
-## Postman
+## 🌐 Postman
 - **Collection** : `postman/API_Scoring_Fraude.postman_collection.json`
 - **Tests automatisés** : `postman/API_Scoring_Fraude_Tests.postman_collection.json`
 - **Environment** : `postman/environment_local.postman_environment.json`
 
 ---
 
-## Docker
+## 🐳 Docker
 - **API** : `Dockerfile`
 - **Services** : `docker-compose.yml` (API + Elasticsearch + Kibana + Keycloak)
 
 ---
 
-## Sécurité & Conformité
+## 🔒 Sécurité & Conformité
 - Masquer les secrets (Vault / variables d’environnement).
 - Rotation des clés et tokens.
 - Conformité GDPR : droit à l’effacement, minimisation des données.
