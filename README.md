@@ -1,7 +1,7 @@
 # 🌐 API-Integration => Scoring MLOps Platform
 # API Scoring & Détection Fraude
 
-## Description
+## 🧩 Description
 Ce projet implémente une API FastAPI pour exposer des endpoints de **scoring crédit** et **détection de fraude**.  
 Il inclut :
 
