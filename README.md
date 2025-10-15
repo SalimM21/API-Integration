@@ -1,4 +1,4 @@
-# API-Integration => Scoring MLOps Platform
+# 🌐 API-Integration => Scoring MLOps Platform
 # API Scoring & Détection Fraude
 
 ## Description
