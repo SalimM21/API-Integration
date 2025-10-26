@@ -1,0 +1,78 @@
+{
+  "info": {
+    "name": "API Scoring & Fraude",
+    "_postman_id": "b1234567-89ab-4cde-f012-3456789abcde",
+    "description": "Collection Postman pour tester les endpoints /score et /fraude de l'API Scoring & Détection Fraude",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "POST /score",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"client_id\": \"C100\",\n  \"age\": 35,\n  \"revenu\": 55000,\n  \"historique_impaye\": 0,\n  \"montant_credit\": 15000\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/score",
+          "host": ["{{base_url}}"],
+          "path": ["score"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /fraude",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"transaction_id\": \"T100\",\n  \"client_id\": \"C100\",\n  \"montant\": 1200.50,\n  \"type\": \"virement\",\n  \"devise\": \"USD\",\n  \"date_transaction\": \"2025-10-01T12:00:00\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/fraude",
+          "host": ["{{base_url}}"],
+          "path": ["fraude"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "admin_token",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.fake_token",
+      "type": "string"
+    }
+  ]
+}
