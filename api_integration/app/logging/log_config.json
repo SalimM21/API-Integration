@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "disable_existing_loggers": false,
+  "formatters": {
+    "standard": {
+      "format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+    },
+    "json": {
+      "format": "{ \"time\": \"%(asctime)s\", \"level\": \"%(levelname)s\", \"logger\": \"%(name)s\", \"message\": \"%(message)s\" }"
+    }
+  },
+  "handlers": {
+    "console": {
+      "class": "logging.StreamHandler",
+      "level": "INFO",
+      "formatter": "standard",
+      "stream": "ext://sys.stdout"
+    },
+    "elk": {
+      "class": "app.logging.elk_logger.ELKHTTPHandler",
+      "level": "INFO",
+      "formatter": "json",
+      "host": "localhost:5044",
+      "url": "/transactions/_doc",
+      "method": "POST"
+    },
+    "file": {
+      "class": "logging.FileHandler",
+      "level": "DEBUG",
+      "formatter": "standard",
+      "filename": "app.log",
+      "mode": "a",
+      "encoding": "utf-8"
+    }
+  },
+  "loggers": {
+    "": {
+      "level": "INFO",
+      "handlers": ["console", "elk", "file"]
+    },
+    "elk_logger": {
+      "level": "INFO",
+      "handlers": ["elk"],
+      "propagate": false
+    }
+  }
+}
