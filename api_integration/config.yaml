@@ -1,0 +1,51 @@
+# ==========================
+# CONFIGURATION APPLICATIVE
+# ==========================
+
+# ==========================
+# SCORING
+# ==========================
+scoring:
+  seuils:
+    faible: 300
+    moyen: 600
+    eleve: 800
+  coef:
+    age: 0.2
+    revenu: 0.3
+    historique_impaye: -0.5
+    montant_credit: -0.2
+  description: "Seuils et coefficients pour calcul du score client"
+
+# ==========================
+# REGLES FRAUDE
+# ==========================
+fraude:
+  seuils:
+    montant_eleve: 10000     # Transactions > 10k considérées à risque
+    nb_transactions_24h: 5  # Plus de 5 transactions en 24h → alerte
+    pays_suspect: ["NG", "RU", "KP"] # Pays à risque
+  score_fraude:
+    faible: 0.2
+    moyen: 0.5
+    eleve: 0.8
+  description: "Règles métier pour détection de transactions frauduleuses"
+
+# ==========================
+# LOGGING
+# ==========================
+logging:
+  level: INFO
+  elasticsearch_index: scoring_fraude_logs
+
+# ==========================
+# AUTH / RBAC
+# ==========================
+auth:
+  roles:
+    admin:
+      permissions: ["score_read","score_write","fraude_read","fraude_write"]
+    analyste:
+      permissions: ["score_read","fraude_read"]
+    user:
+      permissions: ["score_read"]
