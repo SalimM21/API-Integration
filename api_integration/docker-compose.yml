@@ -1,0 +1,76 @@
+version: "3.9"
+
+services:
+  # ==========================
+  # API FastAPI
+  # ==========================
+  api:
+    build: .
+    container_name: api_scoring
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - elasticsearch
+      - keycloak
+    networks:
+      - scoring_net
+
+  # ==========================
+  # Elasticsearch
+  # ==========================
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ELASTIC_USERNAME=elastic
+      - ELASTIC_PASSWORD=changeme
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    networks:
+      - scoring_net
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+
+  # ==========================
+  # Kibana
+  # ==========================
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    container_name: kibana
+    environment:
+      ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - scoring_net
+
+  # ==========================
+  # Keycloak (optionnel)
+  # ==========================
+  keycloak:
+    image: quay.io/keycloak/keycloak:21.1.1
+    container_name: keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command: start-dev
+    ports:
+      - "8080:8080"
+    networks:
+      - scoring_net
+
+# ==========================
+# Réseaux et volumes
+# ==========================
+networks:
+  scoring_net:
+    driver: bridge
+
+volumes:
+  es_data:
