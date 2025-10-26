@@ -1,0 +1,74 @@
+{
+  "score_profiles": [
+    {"client_id": "C1001", "age": 42, "revenu": 82000, "historique_impaye": 0, "montant_credit": 20000},
+    {"client_id": "C1002", "age": 29, "revenu": 48000, "historique_impaye": 1, "montant_credit": 8000},
+    {"client_id": "C1003", "age": 55, "revenu": 120000, "historique_impaye": 0, "montant_credit": 50000},
+    {"client_id": "C1004", "age": 23, "revenu": 22000, "historique_impaye": 2, "montant_credit": 6000},
+    {"client_id": "C1005", "age": 37, "revenu": 64000, "historique_impaye": 0, "montant_credit": 15000},
+    {"client_id": "C1006", "age": 31, "revenu": 35000, "historique_impaye": 3, "montant_credit": 7000},
+    {"client_id": "C1007", "age": 48, "revenu": 95000, "historique_impaye": 1, "montant_credit": 30000},
+    {"client_id": "C1008", "age": 26, "revenu": 28000, "historique_impaye": 0, "montant_credit": 5000},
+    {"client_id": "C1009", "age": 60, "revenu": 140000, "historique_impaye": 0, "montant_credit": 80000},
+    {"client_id": "C1010", "age": 34, "revenu": 52000, "historique_impaye": 1, "montant_credit": 12000},
+    {"client_id": "C1011", "age": 45, "revenu": 78000, "historique_impaye": 0, "montant_credit": 25000},
+    {"client_id": "C1012", "age": 27, "revenu": 31000, "historique_impaye": 2, "montant_credit": 9000},
+    {"client_id": "C1013", "age": 22, "revenu": 18000, "historique_impaye": 4, "montant_credit": 4000},
+    {"client_id": "C1014", "age": 39, "revenu": 67000, "historique_impaye": 0, "montant_credit": 18000},
+    {"client_id": "C1015", "age": 52, "revenu": 110000, "historique_impaye": 0, "montant_credit": 45000},
+    {"client_id": "C1016", "age": 30, "revenu": 47000, "historique_impaye": 1, "montant_credit": 10000},
+    {"client_id": "C1017", "age": 41, "revenu": 88000, "historique_impaye": 0, "montant_credit": 22000},
+    {"client_id": "C1018", "age": 28, "revenu": 36000, "historique_impaye": 2, "montant_credit": 7500},
+    {"client_id": "C1019", "age": 33, "revenu": 54000, "historique_impaye": 0, "montant_credit": 16000},
+    {"client_id": "C1020", "age": 47, "revenu": 99000, "historique_impaye": 1, "montant_credit": 28000},
+    {"client_id": "C1021", "age": 24, "revenu": 26000, "historique_impaye": 3, "montant_credit": 6000},
+    {"client_id": "C1022", "age": 58, "revenu": 130000, "historique_impaye": 0, "montant_credit": 60000},
+    {"client_id": "C1023", "age": 36, "revenu": 61000, "historique_impaye": 1, "montant_credit": 14000},
+    {"client_id": "C1024", "age": 43, "revenu": 84000, "historique_impaye": 0, "montant_credit": 23000},
+    {"client_id": "C1025", "age": 21, "revenu": 17000, "historique_impaye": 5, "montant_credit": 3000},
+    {"client_id": "C1026", "age": 50, "revenu": 100000, "historique_impaye": 0, "montant_credit": 40000},
+    {"client_id": "C1027", "age": 32, "revenu": 42000, "historique_impaye": 1, "montant_credit": 11000},
+    {"client_id": "C1028", "age": 38, "revenu": 69000, "historique_impaye": 0, "montant_credit": 17000},
+    {"client_id": "C1029", "age": 46, "revenu": 93000, "historique_impaye": 0, "montant_credit": 27000},
+    {"client_id": "C1030", "age": 27, "revenu": 30000, "historique_impaye": 2, "montant_credit": 8000}
+  ],
+  "fraude_transactions": [
+    {"transaction_id": "T-A001", "client_id": "C1001", "montant": 1500.00, "type": "paiement", "devise": "USD", "date_transaction": "2025-10-25T09:12:00Z"},
+    {"transaction_id": "T-A002", "client_id": "C1002", "montant": 8200.50, "type": "virement", "devise": "EUR", "date_transaction": "2025-10-24T14:03:00Z"},
+    {"transaction_id": "T-A003", "client_id": "C1003", "montant": 25000.00, "type": "virement", "devise": "USD", "date_transaction": "2025-10-23T18:45:00Z"},
+    {"transaction_id": "T-A004", "client_id": "C1004", "montant": 75.20, "type": "paiement", "devise": "MAD", "date_transaction": "2025-10-22T08:30:00Z"},
+    {"transaction_id": "T-A005", "client_id": "C1005", "montant": 430.00, "type": "retrait", "devise": "EUR", "date_transaction": "2025-10-21T11:20:00Z"},
+    {"transaction_id": "T-A006", "client_id": "C1006", "montant": 9800.00, "type": "paiement", "devise": "USD", "date_transaction": "2025-10-20T16:55:00Z"},
+    {"transaction_id": "T-A007", "client_id": "C1007", "montant": 120000.00, "type": "virement", "devise": "USD", "date_transaction": "2025-10-19T07:10:00Z"},
+    {"transaction_id": "T-A008", "client_id": "C1008", "montant": 49.99, "type": "paiement", "devise": "GBP", "date_transaction": "2025-10-18T19:40:00Z"},
+    {"transaction_id": "T-A009", "client_id": "C1009", "montant": 45000.00, "type": "virement", "devise": "EUR", "date_transaction": "2025-10-17T13:05:00Z"},
+    {"transaction_id": "T-A010", "client_id": "C1010", "montant": 300.00, "type": "paiement", "devise": "MAD", "date_transaction": "2025-10-16T21:15:00Z"},
+    {"transaction_id": "T-A011", "client_id": "C1011", "montant": 22000.00, "type": "virement", "devise": "USD", "date_transaction": "2025-10-15T10:00:00Z"},
+    {"transaction_id": "T-A012", "client_id": "C1012", "montant": 150.75, "type": "paiement", "devise": "EUR", "date_transaction": "2025-10-14T09:30:00Z"},
+    {"transaction_id": "T-A013", "client_id": "C1013", "montant": 95.00, "type": "retrait", "devise": "MAD", "date_transaction": "2025-10-13T12:45:00Z"},
+    {"transaction_id": "T-A014", "client_id": "C1014", "montant": 17500.00, "type": "virement", "devise": "USD", "date_transaction": "2025-10-12T15:10:00Z"},
+    {"transaction_id": "T-A015", "client_id": "C1015", "montant": 60000.00, "type": "virement", "devise": "EUR", "date_transaction": "2025-10-11T17:00:00Z"},
+    {"transaction_id": "T-A016", "client_id": "C1016", "montant": 4200.00, "type": "paiement", "devise": "USD", "date_transaction": "2025-10-10T08:50:00Z"},
+    {"transaction_id": "T-A017", "client_id": "C1017", "montant": 350.00, "type": "paiement", "devise": "MAD", "date_transaction": "2025-10-09T20:25:00Z"},
+    {"transaction_id": "T-A018", "client_id": "C1018", "montant": 9200.00, "type": "virement", "devise": "GBP", "date_transaction": "2025-10-08T11:11:00Z"},
+    {"transaction_id": "T-A019", "client_id": "C1019", "montant": 640.00, "type": "retrait", "devise": "EUR", "date_transaction": "2025-10-07T06:30:00Z"},
+    {"transaction_id": "T-A020", "client_id": "C1020", "montant": 26000.00, "type": "virement", "devise": "USD", "date_transaction": "2025-10-06T14:44:00Z"},
+    {"transaction_id": "T-A021", "client_id": "C1021", "montant": 120.00, "type": "paiement", "devise": "MAD", "date_transaction": "2025-10-05T09:05:00Z"},
+    {"transaction_id": "T-A022", "client_id": "C1022", "montant": 90000.00, "type": "virement", "devise": "EUR", "date_transaction": "2025-10-04T22:22:00Z"},
+    {"transaction_id": "T-A023", "client_id": "C1023", "montant": 4800.00, "type": "paiement", "devise": "USD", "date_transaction": "2025-10-03T13:13:00Z"},
+    {"transaction_id": "T-A024", "client_id": "C1024", "montant": 7200.00, "type": "virement", "devise": "GBP", "date_transaction": "2025-10-02T18:18:00Z"},
+    {"transaction_id": "T-A025", "client_id": "C1025", "montant": 50.00, "type": "paiement", "devise": "MAD", "date_transaction": "2025-10-01T07:07:00Z"},
+    {"transaction_id": "T-A026", "client_id": "C1026", "montant": 47000.00, "type": "virement", "devise": "USD", "date_transaction": "2025-09-30T12:00:00Z"},
+    {"transaction_id": "T-A027", "client_id": "C1027", "montant": 3300.00, "type": "paiement", "devise": "EUR", "date_transaction": "2025-09-29T16:16:00Z"},
+    {"transaction_id": "T-A028", "client_id": "C1028", "montant": 11000.00, "type": "virement", "devise": "USD", "date_transaction": "2025-09-28T10:10:00Z"},
+    {"transaction_id": "T-A029", "client_id": "C1029", "montant": 27000.00, "type": "virement", "devise": "EUR", "date_transaction": "2025-09-27T09:09:00Z"},
+    {"transaction_id": "T-A030", "client_id": "C1030", "montant": 880.00, "type": "paiement", "devise": "MAD", "date_transaction": "2025-09-26T20:20:00Z"}
+  ]
+}
+
+
+// Exemple (Python)
+// import json
+// with open("batch_profiles.json","r") as f:
+//     data = json.load(f)
+// score_profiles = data["score_profiles"]
+// fraude_transactions = data["fraude_transactions"]
