@@ -17,14 +17,16 @@ ELASTIC_USER = os.getenv("ELASTIC_USER", "")
 ELASTIC_PASSWORD = os.getenv("ELASTIC_PASSWORD", "")
 
 # Création du client Elasticsearch
+es_url = f"http://{ELASTIC_HOST}:{ELASTIC_PORT}"
 if ELASTIC_USER and ELASTIC_PASSWORD:
+    # modern elasticsearch client expects a URL and basic_auth tuple
     es_client = Elasticsearch(
-        hosts=[{"host": ELASTIC_HOST, "port": ELASTIC_PORT}],
-        http_auth=(ELASTIC_USER, ELASTIC_PASSWORD)
+        hosts=[es_url],
+        basic_auth=(ELASTIC_USER, ELASTIC_PASSWORD)
     )
 else:
     es_client = Elasticsearch(
-        hosts=[{"host": ELASTIC_HOST, "port": ELASTIC_PORT}]
+        hosts=[es_url]
     )
 
 # --- Keycloak / OAuth2 ---
@@ -44,6 +46,14 @@ FRAUDE_ALERT_THRESHOLD = float(os.getenv("FRAUDE_ALERT_THRESHOLD", 0.7))
 # --- Logging ---
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 LOG_INDEX = os.getenv("LOG_INDEX", "api-logs")
+
+# Service name used in logs
+SERVICE_NAME = os.getenv("SERVICE_NAME", "api_scoring")
+
+# Aliases pour compatibilité avec le module de logging ELK
+ELK_HOST = ELASTIC_HOST
+ELK_PORT = ELASTIC_PORT
+ELK_INDEX = LOG_INDEX
 
 # --- Autres paramètres ---
 MAX_PAYLOAD_SIZE = int(os.getenv("MAX_PAYLOAD_SIZE", 1024 * 1024))  # 1MB par défaut

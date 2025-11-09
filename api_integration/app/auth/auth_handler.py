@@ -38,6 +38,9 @@ def verify_jwt(token: str = Depends(oauth2_scheme)):
             headers={"WWW-Authenticate": "Bearer"},
         )
 
+# Alias pour compatibilité avec d'anciennes imports
+verify_token = verify_jwt
+
 def require_roles(*roles):
     """
     Dépendance FastAPI pour vérifier que le JWT contient au moins un rôle autorisé.

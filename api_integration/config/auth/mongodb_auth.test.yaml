@@ -1,0 +1,22 @@
+mongodb:
+  auth:
+    enabled: true
+    mechanism: "SCRAM-SHA-256"
+    source: "admin"
+    credentials:
+      username: "test_user"
+      password: "test_password"
+  connection:
+    host: "localhost"
+    port: 27018
+    database: "test_chatbot_db"
+    options:
+      retryWrites: true
+      w: "majority"
+      ssl: false
+  collections:
+    conversations: "test_conversations"
+    users: "test_users"
+  security:
+    encryption:
+      enabled: false  # Désactivé pour les tests

@@ -12,13 +12,13 @@ pydantic==2.6.2
 # ==========================
 # CLIENT HTTP ASYNC
 # ==========================
-httpx==1.41.1
+httpx==0.28.1
 
 # ==========================
 # AUTH / JWT / OAUTH2
 # ==========================
 python-jose[cryptography]==3.2.0
-python-multipart==0.0.6
+python-multipart==0.0.7
 
 # ==========================
 # ELASTICSEARCH / LOGGING
@@ -32,10 +32,12 @@ loguru==0.7.1
 pytest==8.3.2
 pytest-asyncio==0.21.1
 pytest-cov==4.1.0
-httpx==1.41.1
+httpx==0.28.1
 
 # ==========================
 # UTILITAIRES
 # ==========================
 python-dotenv==1.0.0
 faker==23.3.0
+numpy==1.26.2
+requests==2.32.5

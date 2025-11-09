@@ -1,0 +1,14 @@
+# Fichiers de configuration sensibles
+config/auth/keycloak.env
+config/auth/*.json
+
+# Autres fichiers sensibles
+*.pem
+*.key
+*.env
+token.txt
+
+# Données et logs
+logs/
+data/
+elasticsearch/data/

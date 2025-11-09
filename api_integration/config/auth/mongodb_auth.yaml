@@ -1,0 +1,24 @@
+mongodb:
+  auth:
+    enabled: true
+    mechanism: "SCRAM-SHA-256"
+    source: "admin"
+    credentials:
+      username: "${MONGO_USERNAME}"
+      password: "${MONGO_PASSWORD}"
+  connection:
+    host: "localhost"
+    port: 27017
+    database: "chatbot_db"
+    options:
+      retryWrites: true
+      w: "majority"
+      ssl: false
+  collections:
+    conversations: "conversations"
+    users: "users"
+  security:
+    encryption:
+      enabled: true
+      algorithm: "AES-256-CBC"
+      key_file: "config/auth/encryption.key"

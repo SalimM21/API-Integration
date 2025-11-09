@@ -23,7 +23,8 @@ class ELKHTTPHandler(HTTPHandler):
         # Si record.msg est un dict, l'ajouter directement
         if isinstance(record.msg, dict):
             log_entry.update(record.msg)
-        return json.dumps(log_entry)
+        # Retourner un dict (HTTPHandler s'attend à un mapping pour urlencode)
+        return log_entry
 
 # --- Création du logger global
 logger = logging.getLogger("elk_logger")
