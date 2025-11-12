@@ -4,7 +4,7 @@ metadata:
   name: scoring-api
   namespace: default
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: scoring-api
@@ -19,19 +19,21 @@ spec:
         ports:
         - containerPort: 8000
         env:
-        - name: MONGODB_URL
-          value: "mongodb://mongodb-service:27017"  # Adapter selon le service MongoDB
-        - name: ELASTICSEARCH_URL
-          value: "http://elasticsearch-service:9200"  # Adapter selon le service ES
-        - name: KEYCLOAK_ISSUER
-          value: "http://keycloak-service:8080/auth/realms/scoring"  # Adapter
+        - name: DATABASE_URL
+          value: "postgresql://postgres:postgres@postgresql.storage.svc.cluster.local:5432/scoring_db"
+        - name: REDIS_URL
+          value: "redis://redis-service:6379"  # À déployer si nécessaire
+        - name: MLFLOW_TRACKING_URI
+          value: "http://mlflow-service:5000"  # À déployer plus tard
+        - name: KAFKA_BOOTSTRAP_SERVERS
+          value: "my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092"
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "250m"
+            memory: "32Mi"
+            cpu: "25m"
           limits:
-            memory: "1Gi"
-            cpu: "500m"
+            memory: "64Mi"
+            cpu: "50m"
 ---
 apiVersion: v1
 kind: Service
