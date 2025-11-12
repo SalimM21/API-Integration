@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scoring-api
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: scoring-api
+  template:
+    metadata:
+      labels:
+        app: scoring-api
+    spec:
+      containers:
+      - name: scoring-api
+        image: scoring-api:latest  # À construire depuis le Dockerfile
+        ports:
+        - containerPort: 8000
+        env:
+        - name: MONGODB_URL
+          value: "mongodb://mongodb-service:27017"  # Adapter selon le service MongoDB
+        - name: ELASTICSEARCH_URL
+          value: "http://elasticsearch-service:9200"  # Adapter selon le service ES
+        - name: KEYCLOAK_ISSUER
+          value: "http://keycloak-service:8080/auth/realms/scoring"  # Adapter
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: scoring-api-service
+  namespace: default
+spec:
+  selector:
+    app: scoring-api
+  ports:
+  - port: 8000
+    targetPort: 8000
+    name: http
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: scoring-api-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: scoring-api.local  # Adapter selon le domaine
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: scoring-api-service
+            port:
+              number: 8000
