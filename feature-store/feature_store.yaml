@@ -1,0 +1,15 @@
+project: mlops_scoring_platform
+registry: s3://data-lake/feast/registry.db
+provider: local
+offline_store:
+  type: postgres
+  host: postgresql.storage.svc.cluster.local
+  port: 5432
+  database: scoring_db
+  db_schema: feast
+  user: postgres
+  password: iaxVrMCI8y
+online_store:
+  type: redis
+  connection_string: redis-service.default.svc.cluster.local:6379
+entity_key_serialization_version: 2

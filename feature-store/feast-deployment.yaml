@@ -1,0 +1,146 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feast-feature-server
+  namespace: default
+  labels:
+    app: feast-feature-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: feast-feature-server
+  template:
+    metadata:
+      labels:
+        app: feast-feature-server
+    spec:
+      containers:
+      - name: feast-server
+        image: feastdev/feature-server:0.34.0
+        ports:
+        - containerPort: 6566
+        - containerPort: 80
+        env:
+        - name: FEAST_SERVER_REPO_PATH
+          value: "/opt/feast/repo"
+        - name: FEAST_SERVER_FEATURE_REPO_PATH
+          value: "/opt/feast/repo/feature_repo"
+        volumeMounts:
+        - name: feast-repo
+          mountPath: /opt/feast/repo
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 60
+          periodSeconds: 30
+      volumes:
+      - name: feast-repo
+        configMap:
+          name: feast-feature-repo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: feast-feature-server-service
+  namespace: default
+  labels:
+    app: feast-feature-server
+spec:
+  selector:
+    app: feast-feature-server
+  ports:
+  - name: grpc
+    port: 6566
+    targetPort: 6566
+  - name: http
+    port: 80
+    targetPort: 80
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feast-materialization-job
+  namespace: default
+  labels:
+    app: feast-materialization
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: feast-materialization
+  template:
+    metadata:
+      labels:
+        app: feast-materialization
+    spec:
+      containers:
+      - name: feast-materialization
+        image: feastdev/feature-server:0.34.0
+        command: ["feast", "materialize-incremental", "--feature-views", "customer_features", "transaction_features"]
+        env:
+        - name: FEAST_REPO_PATH
+          value: "/opt/feast/repo"
+        volumeMounts:
+        - name: feast-repo
+          mountPath: /opt/feast/repo
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "200m"
+      volumes:
+      - name: feast-repo
+        configMap:
+          name: feast-feature-repo
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: feast-materialization-cron
+  namespace: default
+spec:
+  schedule: "*/30 * * * *"  # Every 30 minutes
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: feast-materialization
+            image: feastdev/feature-server:0.34.0
+            command: ["feast", "materialize-incremental", "$(date -d '30 minutes ago' +%Y-%m-%dT%H:%M:%S)", "$(date +%Y-%m-%dT%H:%M:%S)"]
+            env:
+            - name: FEAST_REPO_PATH
+              value: "/opt/feast/repo"
+            volumeMounts:
+            - name: feast-repo
+              mountPath: /opt/feast/repo
+            resources:
+              requests:
+                memory: "256Mi"
+                cpu: "100m"
+              limits:
+                memory: "512Mi"
+                cpu: "200m"
+          volumes:
+          - name: feast-repo
+            configMap:
+              name: feast-feature-repo
+          restartPolicy: OnFailure
