@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes import score_routes, fraude_routes, mongodb_routes
 from app.auth.auth_handler import require_roles, verify_token
-from app.logging.elk_logger import logger
+from app.app_logging.elk_logger import logger
 from app.services.mongodb_service import mongodb_service
 import requests
 from app.config import es_client, KEYCLOAK_ISSUER
